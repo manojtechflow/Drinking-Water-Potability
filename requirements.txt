@@ -7,3 +7,4 @@ Jinja2
 scikit-learn
 imblearn
 dill
+flask

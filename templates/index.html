@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drinking Water Portability Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            position: relative; /* Add relative positioning to the body */
+        }
+        input[type="submit"], input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+        }
+        .restart-btn {
+            position: absolute;
+            top: 5px;
+            left: 600px;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            position: relative; /* Add relative positioning */
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            display: grid;
+            grid-template-columns: max-content auto;
+            grid-row-gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        label {
+            text-align: left;
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            font-size: 16px;
+            width: 150px;
+            box-shadow: inset 0 0 2px #000000;
+        }
+        
+        /* Centering the buttons */
+        form > input[type="submit"], form > input[type="button"] {
+            justify-self: center;
+            grid-column: 1 / span 2; 
+        }
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .result-text {
+            text-align: center;
+            font-family: 'Arial', sans-serif; /* Unique text font */
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .safe {
+            color: green; /* Green color for safe result */
+        }
+        .not-safe {
+            color: red; /* Red color for not safe result */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Restart Button -->
+        <a class="restart-btn" href="/">Restart</a>
+        <h1>Drinking Water Portability Check</h1>
+        <form method="post">
+            <label for="ph">pH:</label>
+            <input type="text" name="ph" id="ph" placeholder="e.g. 7.0">
+            <label for="Hardness">Hardness:</label>
+            <input type="text" name="Hardness" id="Hardness" placeholder="e.g. 150">
+            <label for="Solids">Solids:</label>
+            <input type="text" name="Solids" id="Solids" placeholder="e.g. 250.5">
+            <label for="Chloramines">Chloramines:</label>
+            <input type="text" name="Chloramines" id="Chloramines" placeholder="e.g. 2.1">
+            <label for="Sulfate">Sulfate:</label>
+            <input type="text" name="Sulfate" id="Sulfate" placeholder="e.g. 100.25">
+            <label for="Conductivity">Conductivity:</label>
+            <input type="text" name="Conductivity" id="Conductivity" placeholder="e.g. 400">
+            <label for="Organic_carbon">Organic Carbon:</label>
+            <input type="text" name="Organic_carbon" id="Organic_carbon" placeholder="e.g. 15.75">
+            <label for="Trihalomethanes">Trihalomethanes:</label>
+            <input type="text" name="Trihalomethanes" id="Trihalomethanes" placeholder="e.g. 0.5">
+            <label for="Turbidity">Turbidity:</label>
+            <input type="text" name="Turbidity" id="Turbidity" placeholder="e.g. 5">
+            <input type="submit" value="Check Portability">
+        </form>
+        {% if results %}
+        <h2>Probability Check Result:</h2>
+        <p class="result-text {% if results == 'Safe for Human Consumption' %} safe {% else %} not-safe {% endif %}">{{ results }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
